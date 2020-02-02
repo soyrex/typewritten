@@ -26,7 +26,7 @@ returned and code is displayed on the right
 ## Installation
 Clone the repository into your custom oh-my-zsh themes directory:
 ```shell
-$ git clone https://github.com/reobin/typewritten.git $ZSH_CUSTOM/themes/typewritten
+$ git clone https://github.com/ehlxr/typewritten.git $ZSH_CUSTOM/themes/typewritten
 ```
 
 Symlink ``typewritten.zsh-theme`` to your oh-my-zsh custom themes directory:
