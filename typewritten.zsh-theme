@@ -28,7 +28,8 @@ local git_info='$(git_prompt_info)$(git_prompt_status)%{$reset_color%}'
 local user_host='%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[yellow]%}%m %{$reset_color%}'
 
 # default: blue, if return code other than 0: red
-local prompt='%(?,%{$fg[blue]%}> ,%{$fg[red]%}> )'
+local prompt_color="%(?,%{$fg[blue]%},%{$fg[red]%})"
+local prompt='${prompt_color}> %{$reset_color%}'
 
 # current directory display
 local directory_path='%{$fg[blue]%}%~'
@@ -53,7 +54,13 @@ RPROMPT+="${git_info}"
 RPROMPT+="${return_code}"
 
 # prompt cursor fix when exiting vim
+local cursor="\e[3 q"
+if [ "$TYPEWRITTEN_CURSOR" = "block" ]; then
+  cursor="\e[1 q"
+elif [ "$TYPEWRITTEN_CURSOR" = "beam" ]; then
+  cursor="\e[5 q"
+fi
 _fix_cursor() {
-  echo -ne "\e[3 q"
+  echo -ne "${cursor}"
 }
 precmd_functions+=(_fix_cursor)
