@@ -1,4 +1,4 @@
-#      ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____
+#black      ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____
 #     ||t |||y |||p |||e |||w |||r |||i |||t |||t |||e |||n ||
 #     ||__|||__|||__|||__|||__|||__|||__|||__|||__|||__|||__||
 #     |/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|
@@ -7,7 +7,7 @@
 #
 
 # git status variables
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$reset_color%}-> %{$fg[magenta]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$reset_color%} %{$fg[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY=""
 ZSH_THEME_GIT_PROMPT_CLEAN=""
@@ -28,7 +28,7 @@ local git_info='$(git_prompt_info)$(git_prompt_status)%{$reset_color%}'
 local user_host='%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[yellow]%}%m %{$reset_color%}'
 
 # default: blue, if return code other than 0: red
-local prompt_color="%(?,%{$fg[blue]%},%{$fg[red]%})"
+local prompt_color="%(?,%{$fg_bold[green]%},%{$fg[red]%})"
 local prompt='${prompt_color}> %{$reset_color%}'
 
 # current directory display
@@ -42,15 +42,15 @@ local return_code='%(?,,%{$fg[red]%} RC=%?%{$reset_color%})'
 if [ "$TYPEWRITTEN_MULTILINE" = true ]; then
   # left prompt definition (multiline)
   PROMPT="${user_host}
-${prompt}"
+${directory_path} ${prompt}"
 else
   # left prompt definition (singleline)
-  PROMPT="${prompt}"
+  PROMPT="
+${directory_path} ${prompt}"
 fi
 
 # right prompt definition
-RPROMPT="${directory_path}"
-RPROMPT+="${git_info}"
+RPROMPT="${git_info}"
 RPROMPT+="${return_code}"
 
 # prompt cursor fix when exiting vim
